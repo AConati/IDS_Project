@@ -2,6 +2,10 @@
 
 Description
 
+## Dataset
+
+[Yelp Data](https://metatext.io/datasets/yelp-open-dataset)
+
 ## TODO
 
 - Read input data into dataframe (including reconciling different json files)
