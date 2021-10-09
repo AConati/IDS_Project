@@ -7,10 +7,8 @@ from nltk.stem import WordNetLemmatizer
 import json
 from tqdm import tqdm
 
-import time
-
-def read_data(path):
-    return pd.read_json(path, lines=True)
+def read_data(path, nrows=None):
+        return pd.read_json(path, lines=True, nrows=nrows)
 
 
 def prepare_text_data(review_texts, method="stem"):
@@ -30,8 +28,8 @@ def prepare_text_data(review_texts, method="stem"):
     return prepared_reviews
 
 
-def get_df(review_path, business_path):
-    review = read_data(review_path)
+def get_df(review_path, business_path, nrows=None):
+    review = read_data(review_path, nrows=nrows)
 
     business = read_data(business_path)
     business = business.drop(columns=["stars"])
@@ -41,7 +39,7 @@ def get_df(review_path, business_path):
     df = df.drop(columns=["review_id", "business_id", "user_id", "address", "hours"])     
 
     # Split business attributes column
-    # Note: apply is hella slow - pd.json_normalize method is much faster and seems
+    # Note: apply is pretty slow - pd.json_normalize method is much faster and seems
     # to be otherwise equivalent
 
     # attributes = df["attributes"].apply(pd.Series)
@@ -56,17 +54,14 @@ def get_df(review_path, business_path):
     # This takes a long time for large data sets
     # Do this once, then write the prepared data to skip
     # this step on subsequent calls
-    start = time.time()
-    print("Started text preparation...")
     prepared_reviews = prepare_text_data(df["text"].tolist())
-    print("Preparing text took {.2f} seconds".format(time.time()-start))
     df["preparedText"] = pd.Series(prepared_reviews)
 
     return df
 
 
 def main():
-    df = get_df("review_subset1.json", "RAW_DATA/yelp_academic_dataset_business.json")
+    df = get_df("review_subset1.json", "RAW_DATA/yelp_academic_dataset_business.json", nrows=10000)
     print(df.head())
     print(df.shape)
     print(df.columns)
