@@ -27,6 +27,10 @@ def prepare_text_data(review_texts, method="stem"):
 
     return prepared_reviews
 
+"""
+Prepared text data stored in column "preparedText" as
+a list of tokens ("words").
+"""
 
 def get_df(review_path, business_path, nrows=None):
     review = read_data(review_path, nrows=nrows)
@@ -61,7 +65,7 @@ def get_df(review_path, business_path, nrows=None):
 
 
 def main():
-    df = get_df("review_subset1.json", "RAW_DATA/yelp_academic_dataset_business.json", nrows=10000)
+    df = get_df("RAW_DATA/small_review_subset.json", "RAW_DATA/yelp_academic_dataset_business.json")
     print(df.head())
     print(df.shape)
     print(df.columns)
@@ -69,7 +73,7 @@ def main():
 
     # After preparing data, we can write it to file so loading
     # is much faster on subsequent calls
-    df.to_csv('prepared_data.csv')
+    df.to_csv('prepared_data_small.csv')
 
 if __name__ == "__main__":
     main()
