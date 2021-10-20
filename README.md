@@ -6,12 +6,15 @@ Description
 
 [Yelp Data](https://metatext.io/datasets/yelp-open-dataset)
 
-## TODO
+## DONE (may need to be adjusted)
 
 - Read input data into dataframe (including reconciling different json files)
 - Parse data (esp. text data), including stop word removal, stemming, lemmatization
-- Identify important words (TFIDF Vectorization) and construct word clouds (and tables)
-- Consider bigrams / n-grams also?
+- Identify common words (Tfidf vectorization) 
+
+## TODO
+
+- Construct word clouds (and tables) (by topic)
 - Word2Vec model
 - Topic clustering (LDA)
 - Logistic Regression model / Linear Regression model (on review score)
