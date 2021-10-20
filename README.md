@@ -12,11 +12,14 @@ Description
 - Parse data (esp. text data), including stop word removal, stemming, lemmatization
 - Identify common words (Tfidf vectorization) 
 
+## In Progress
+
+- Topic clustering (LDA) **(ARI)**
+
 ## TODO
 
 - Construct word clouds (and tables) (by topic)
 - Word2Vec model
-- Topic clustering (LDA)
 - Logistic Regression model / Linear Regression model (on review score)
 - Comparison with other classifiers (Naive Bayes, SVM)
 - Come up with and implement ways to visualize results
