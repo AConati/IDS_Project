@@ -82,6 +82,14 @@ def get_df(review_path, business_path, nrows=None, business_name=None):
 
 
 def main():
+    """
+    Allows for reading restaurant name as command line argument.
+    eg. python parse_data.py Oskar\ Blues\ Taproom
+
+    Just trying to read the entire dataset made my computer tosi angry...
+    a bit of a problem since a given restaurant's reviews are scattered
+    across the entire dataset. 
+    """
     if len(sys.argv) > 1:
         business_name = sys.argv[1]
         path = "RAW_DATA/yelp_academic_dataset_review.json"
