@@ -11,17 +11,17 @@ Description
 - Read input data into dataframe (including reconciling different json files)
 - Parse data (esp. text data), including stop word removal, stemming, lemmatization
 - Identify common words (Tfidf vectorization) 
+- Topic clustering (LDA) 
 
 ## In Progress
 
-- Topic clustering (LDA) **(ARI)**
+- Construct word clouds (and tables) (by topic) **(ARI)**
 
 ## TODO
 
-- Construct word clouds (and tables) (by topic)
-- Word2Vec model
+- Word2Vec model (Not sure we need this)
 - Logistic Regression model / Linear Regression model (on review score)
-- Comparison with other classifiers (Naive Bayes, SVM)
+- Comparison with other classifiers (Naive Bayes, SVM) (Not sure about this either)
 - Come up with and implement ways to visualize results
 - Design website / interface
 
