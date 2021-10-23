@@ -57,14 +57,19 @@ def find_topics(model, X):
     return df
 
 def print_top_words(lda_model, vocab, n_top_words):
-    topic_words = {}
+    # topic_words = {}
     for topic, comp in enumerate(lda_model.components_):
+        print('Topic{}'.format(topic))
+        print(''.join([vocab[i] + ' ' + str(round(comp[i], 2)) + ' | '
+            for i in comp.argsort()[:-n_top_words - 1:-1]]))
+        """
         word_idx = np.argsort(comp)[::-1][:n_top_words]
         topic_words[topic] = [vocab[i] for i in word_idx]
 
     for topic, words in topic_words.items():
         print("Topic: {}".format(topic))
         print(" {}".format(" ".join(words)))
+        """
 
 def main():
     df = eda.import_data("prepared_data.csv")
