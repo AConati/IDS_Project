@@ -26,7 +26,8 @@ def convert_loaded_text(df):
 
 def get_doc_word_matrix(corpus):
     vectorizer = CountVectorizer()
-    return vectorizer.fit_transform(corpus)
+    X = vectorizer.fit_transform(corpus)
+    return vectorizer, X
 
 """
 Decide on hyperparameters for LDA model.
@@ -55,10 +56,20 @@ def find_topics(model, X):
 
     return df
 
+def print_top_words(lda_model, vocab, n_top_words):
+    topic_words = {}
+    for topic, comp in enumerate(lda_model.components_):
+        word_idx = np.argsort(comp)[::-1][:n_top_words]
+        topic_words[topic] = [vocab[i] for i in word_idx]
+
+    for topic, words in topic_words.items():
+        print("Topic: {}".format(topic))
+        print(" {}".format(" ".join(words)))
+
 def main():
     df = eda.import_data("prepared_data.csv")
     df, documents = convert_loaded_text(df)
-    X = get_doc_word_matrix(documents)
+    vectorizer, X = get_doc_word_matrix(documents)
     # X_train, X_test = train_test_split(X, test_size=0.2)
 
     """
@@ -76,6 +87,9 @@ def main():
 
     topic_df = find_topics(lda_model, X)
     print(topic_df.head())
+
+    vocab = vectorizer.get_feature_names()
+    print_top_words(lda_model, vocab, 20)
 
 if __name__ == "__main__":
     main()
