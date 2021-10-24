@@ -12,10 +12,11 @@ Description
 - Parse data (esp. text data), including stop word removal, stemming, lemmatization
 - Identify common words (Tfidf vectorization) 
 - Topic clustering (LDA) 
+- Construct word clouds (and tables) (by topic) (Clouds are kind of bad)
 
 ## In Progress
 
-- Construct word clouds (and tables) (by topic) **(ARI)**
+- Topics are pretty hard to make sense of based on top words - may need more data
 
 ## TODO
 
