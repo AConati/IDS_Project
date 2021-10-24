@@ -13,6 +13,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
+import sys
+
 """
 When the token lists (eg. ["This", "is", "a", "review"])
 are written and loaded from a file, they are read as strings.
@@ -80,7 +82,7 @@ Shows word cloud for reviews most related to given topic number.
 Works kind of stupidly at the moment because it doesn't factor in
 HOW related it is.
 """
-def show_topic_word_cloud(df, topic_number):
+def show_topic_word_cloud(df, topic_number, ignore=[]):
     df = df[df["mostRelatedTopic"] == topic_number]
     texts = df["preparedText"]
 
@@ -90,7 +92,7 @@ def show_topic_word_cloud(df, topic_number):
     idx = np.argsort(vectorizer.idf_)[::-1]
     features = vectorizer.get_feature_names()
 
-    freqs = {word: X.getcol(idx).sum() for word, idx in vectorizer.vocabulary_.items()}
+    freqs = {word: X.getcol(idx).sum() for word, idx in vectorizer.vocabulary_.items() if word not in ignore}
     cloud = WordCloud(width=800, height=600, mode='RGBA', background_color='white', max_words=100).fit_words(freqs)
     plt.imshow(cloud)
     plt.show()
@@ -121,7 +123,8 @@ def main():
     print_top_words(lda_model, vocab, 20)
 
     df = pd.concat([df, topic_df], axis=1)
-    show_topic_word_cloud(df, 0)
+    if len(sys.argv) > 1:
+        show_topic_word_cloud(df, int(sys.argv[1]), ignore=["good", "great", "food", "place"])
 
     
 
