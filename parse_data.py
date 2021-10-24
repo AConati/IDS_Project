@@ -93,7 +93,7 @@ def main():
     if len(sys.argv) > 1:
         business_name = sys.argv[1]
         path = "RAW_DATA/yelp_academic_dataset_review.json"
-        out = "{}_reviews".format(business_name)
+        out = "{}_reviews.csv".format(business_name)
         nrows = 500000
     else:
         business_name = None
