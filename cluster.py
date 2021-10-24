@@ -8,6 +8,10 @@ from sklearn.decomposition import LatentDirichletAllocation
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 
 """
 When the token lists (eg. ["This", "is", "a", "review"])
@@ -71,6 +75,26 @@ def print_top_words(lda_model, vocab, n_top_words):
         print(" {}".format(" ".join(words)))
         """
 
+"""
+Shows word cloud for reviews most related to given topic number.
+Works kind of stupidly at the moment because it doesn't factor in
+HOW related it is.
+"""
+def show_topic_word_cloud(df, topic_number):
+    df = df[df["mostRelatedTopic"] == topic_number]
+    texts = df["preparedText"]
+
+    vectorizer = TfidfVectorizer()
+    X = vectorizer.fit_transform(texts)
+
+    idx = np.argsort(vectorizer.idf_)[::-1]
+    features = vectorizer.get_feature_names()
+
+    freqs = {word: X.getcol(idx).sum() for word, idx in vectorizer.vocabulary_.items()}
+    cloud = WordCloud(width=800, height=600, mode='RGBA', background_color='white', max_words=100).fit_words(freqs)
+    plt.imshow(cloud)
+    plt.show()
+
 def main():
     df = eda.import_data("prepared_data.csv")
     df, documents = convert_loaded_text(df)
@@ -95,6 +119,11 @@ def main():
 
     vocab = vectorizer.get_feature_names()
     print_top_words(lda_model, vocab, 20)
+
+    df = pd.concat([df, topic_df], axis=1)
+    show_topic_word_cloud(df, 0)
+
+    
 
 if __name__ == "__main__":
     main()
