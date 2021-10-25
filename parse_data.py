@@ -31,14 +31,15 @@ def prepare_text_data(review_texts, method="stem"):
 
     return prepared_reviews
 
-"""
-Prepared text data stored in column "preparedText" as
-a list of tokens ("words").
-Nrows parameter indicates how many lines to read.
-Business id if included indicates which restaurants reviews to include from data provided.
-"""
 
 def get_df(review_path, business_path, nrows=None, business_name=None):
+    """
+    Prepared text data stored in column "preparedText" as
+    a list of tokens ("words").
+    Nrows parameter indicates how many lines to read.
+    Business id if included indicates which restaurants reviews to include from data provided.
+    """
+
     print("Reading review data...")
     review = read_data(review_path, nrows=nrows)
 
@@ -80,16 +81,22 @@ def get_df(review_path, business_path, nrows=None, business_name=None):
 
     return df
 
-
+"""
+"""
 def main():
     """
-    Allows for reading restaurant name as command line argument.
-    eg. python parse_data.py Oskar\ Blues\ Taproom
+    Command line arguments are messy - should have done proper arg parsing
+    but I can't be bothered.
 
-    Just trying to read the entire dataset made my computer tosi angry...
-    a bit of a problem since a given restaurant's reviews are scattered
-    across the entire dataset. 
+    Edit path (review file path) and out (output file path) in the code
+    to change which data to read (and where to output the preprocessed text data).
     """
+    # Allows for reading restaurant name as command line argument.
+    # eg. python parse_data.py Oskar\ Blues\ Taproom
+
+    # Just trying to read the entire dataset made my computer tosi angry...
+    # a bit of a problem since a given restaurant's reviews are scattered
+    # across the entire dataset. 
     if len(sys.argv) > 1:
         business_name = sys.argv[1]
         path = "RAW_DATA/yelp_academic_dataset_review.json"
@@ -97,10 +104,13 @@ def main():
         nrows = 500000
     else:
         business_name = None
-        path = "RAW_DATA/small_review_subset.json"
-        out = "prepared_data_small.csv"
+        path = "RAW_DATA/review_subset.json"
+        out = "prepared_data.csv"
         nrows = None
 
+
+    print("Using input path: {}".format(path))
+    print("Using output path: {}".format(out))
     df = get_df(path, "RAW_DATA/yelp_academic_dataset_business.json", business_name=business_name, nrows=nrows)
     print(df.head())
     print(df.shape)
