@@ -51,7 +51,10 @@ def get_df(review_path, business_path, nrows=None, business_name=None):
 
 
     if business_name != None:
-        index = df[df["name"] == business_name].index[0]
+        index = df[df["name"] == business_name]
+        if index.empty:
+            return index
+        index = index.index[0]
         business_id = df.iloc[[index]].iloc[0]["business_id"]
         df = df.drop(df[df["business_id"] != business_id].index)
         df["index"] = [x for x in range(len(df))]
@@ -94,9 +97,6 @@ def main():
     # Allows for reading restaurant name as command line argument.
     # eg. python parse_data.py Oskar\ Blues\ Taproom
 
-    # Just trying to read the entire dataset made my computer tosi angry...
-    # a bit of a problem since a given restaurant's reviews are scattered
-    # across the entire dataset. 
     if len(sys.argv) > 1:
         business_name = sys.argv[1]
         path = "RAW_DATA/yelp_academic_dataset_review.json"
@@ -111,14 +111,26 @@ def main():
 
     print("Using input path: {}".format(path))
     print("Using output path: {}".format(out))
-    df = get_df(path, "RAW_DATA/yelp_academic_dataset_business.json", business_name=business_name, nrows=nrows)
+    # df = get_df(path, "RAW_DATA/yelp_academic_dataset_business.json", business_name=business_name, nrows=nrows)
+
+    # Split review file into several subsets so that reading them didn't crash my computer
+    # This is for getting individual restaurant reviews since they are scattered across
+    # the dataset
+    # So process each file accordingly, drop other restaurant reviews, and concatenate resulting
+    # dataframes
+    df = get_df("RAW_DATA/reviews/review_subset1.json", "RAW_DATA/yelp_academic_dataset_business.json", business_name=business_name, nrows=nrows)
+    for x in range(2, 19):
+        print("Subset {}".format(x))
+        new_df = get_df("RAW_DATA//reviews/review_subset{}.json".format(x), "RAW_DATA/yelp_academic_dataset_business.json", business_name=business_name, nrows=nrows)
+        df = pd.concat([df, new_df])
+        
     print(df.head())
     print(df.shape)
     print(df.columns)
-    print(df["year"].head())
 
     # After preparing data, we can write it to file so loading
     # is much faster on subsequent calls
+    print("Writing data...")
     df.to_csv(out)
 
 if __name__ == "__main__":
