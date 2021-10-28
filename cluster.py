@@ -99,6 +99,17 @@ def show_topic_word_cloud(df, topic_number, ignore=[]):
     plt.imshow(cloud)
     plt.show()
 
+def get_topic_reviews(df, num_topics):
+    relevance = {}
+    for x in range(num_topics):
+        col_name = "Topic{}".format(x)
+        df = df.sort_values(col_name, ascending=False)
+        relevance[col_name] = df[col_name].head()
+        df["text"].head().to_csv("{}.csv".format(col_name))
+
+    return relevance, df["mostRelatedTopic"].value_counts()
+        
+
 def main():
     print("Parsing inputs...")
     df = pd.read_csv("prepared_data.csv")
@@ -127,6 +138,9 @@ def main():
     print_top_words(lda_model, vocab, 20)
 
     df = pd.concat([df, topic_df], axis=1)
+    relevance, counts = get_topic_reviews(df, 5)
+    print(relevance)
+    print(counts)
     df.to_csv("topicnized_data.csv")
     if len(sys.argv) > 1:
         show_topic_word_cloud(df, int(sys.argv[1]), ignore=["good", "great", "food", "place"])
