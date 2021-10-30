@@ -50,3 +50,17 @@ print('Coefficient of determination: %.2f'
       % r2_score(y_test, y_pred))
 
 
+# Now let's visualize how the estimated linear regression model performed by comparing predicted values to actual values
+
+import matplotlib.pyplot as plt
+
+plt.style.use('seaborn')
+plt.figure(figsize=(15,10))
+plt.scatter(y_test, y_pred)
+plt.xlabel('Actual stars')
+plt.ylabel('Predicted stars')
+plt.title('Actual vs Predicted')
+
+# Finally let's compare predicted and actual values in dataframe
+pred_df = pd.DataFrame({'Actual value': y_test, 'Predicted value': y_pred, 'Difference': y_test-y_pred})
+pred_df.head(20)
