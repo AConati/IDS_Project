@@ -100,6 +100,9 @@ def show_topic_word_cloud(df, topic_number, ignore=[]):
     plt.show()
 
 def get_topic_reviews(df, num_topics):
+    """
+    Gets number of reviews by topic (most related).
+    """
     relevance = {}
     for x in range(num_topics):
         col_name = "Topic{}".format(x)
@@ -108,6 +111,30 @@ def get_topic_reviews(df, num_topics):
         df["text"].head().to_csv("{}.csv".format(col_name))
 
     return relevance, df["mostRelatedTopic"].value_counts()
+
+def get_weighted_averages(df, num_topics):
+    """
+    Gets weighted average score across different topics.
+    """
+
+    topic_q = {"Topic{}".format(i): df["Topic{}".format(i)].sum() for i in range(num_topics)}
+    topic_wa = {"Topic{}".format(i): (df["stars"]*df["Topic{}".format(i)]).sum()/topic_q["Topic{}".format(i)] for i in range(num_topics)}
+    return topic_wa
+
+def weighted_averages_by_year(df, num_topics):
+    years = df["year"].unique()
+    year_dfs = [df[df['year'] == years[i]] for i in range(len(years))]
+    topic_dfs = [[] for i in range(num_topics)]
+    for i, year_df in enumerate(year_dfs):
+        topic_wa = get_weighted_averages(year_df, num_topics)
+        for x in range(num_topics):
+            topic_dfs[x].append((years[i], topic_wa["Topic{}".format(x)]))
+
+    topic_dfs = [pd.DataFrame(x, columns=['year', 'score']) for x in topic_dfs]
+    topic_dfs = [x.sort_values(["year"]) for x in topic_dfs]
+    return topic_dfs
+
+
         
 
 def main():
@@ -127,8 +154,7 @@ def main():
         # f.write(str(grid_model.best_params_))
 
     print("Fitting model...")
-    lda_model = LatentDirichletAllocation(max_iter=5, learning_method='online', n_components=5,
-            learning_decay=.9)
+    lda_model = LatentDirichletAllocation(max_iter=5, learning_method='online', n_components=5, learning_decay=.9)
     lda_model.fit(X)
 
     topic_df = find_topics(lda_model, X)
@@ -141,6 +167,8 @@ def main():
     relevance, counts = get_topic_reviews(df, 5)
     print(relevance)
     print(counts)
+    print(get_weighted_averages(df, 5))
+    print(weighted_averages_by_year(df, 5)[0])
     df.to_csv("topicnized_data.csv")
     if len(sys.argv) > 1:
         show_topic_word_cloud(df, int(sys.argv[1]), ignore=["good", "great", "food", "place"])
