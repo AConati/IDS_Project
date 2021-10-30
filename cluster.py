@@ -135,7 +135,13 @@ def weighted_averages_by_year(df, num_topics):
     return topic_dfs
 
 
-        
+def topicnize_new_reviews(model, vectorizer, path):
+    df = pd.read_csv(path)
+    df, documents = convert_loaded_text(df)
+    X = vectorizer.transform(documents)
+    topic_probabilities = model.transform(X)
+    topic_df = pd.DataFrame(topic_probabilities, columns=["Topic{}".format(i) for i in range(model.n_components)])
+    return pd.concat([df, topic_df], axis=1)
 
 def main():
     print("Parsing inputs...")
@@ -165,10 +171,7 @@ def main():
 
     df = pd.concat([df, topic_df], axis=1)
     relevance, counts = get_topic_reviews(df, 5)
-    print(relevance)
-    print(counts)
-    print(get_weighted_averages(df, 5))
-    print(weighted_averages_by_year(df, 5)[0])
+    print(topicnize_new_reviews(lda_model, vectorizer, "White_Castle_reviews.csv").head())
     df.to_csv("topicnized_data.csv")
     if len(sys.argv) > 1:
         show_topic_word_cloud(df, int(sys.argv[1]), ignore=["good", "great", "food", "place"])
