@@ -1,0 +1,10 @@
+Topic0
+time 1407.07 | would 1189.84 | get 923.13 | one 837.29 | call 833.31 | like 719.47 | back 718.31 | work 717.04 | us 706.5 | servic 693.67 | ask 690.12 | go 678.25 | custom 658.59 | help 650.89 | could 641.56 | day 641.27 | car 636.88 | need 633.85 | even 592.75 | want 590.22 | 
+Topic1
+bowl 269.36 | room 259.74 | hotel 221.79 | stay 182.44 | pool 149.49 | game 112.36 | area 83.26 | store 74.2 | conveni 65.77 | floor 63.72 | locat 61.09 | mall 57.23 | shoe 55.86 | kid 55.22 | properti 53.97 | park 53.2 | tv 53.03 | gym 51.59 | sport 44.68 | near 44.38 | 
+Topic2
+go 778.11 | get 767.35 | back 547.5 | never 482.98 | hair 422.07 | look 420.89 | great 389.82 | work 387.3 | servic 378.49 | like 374.85 | alway 367.38 | place 344.73 | year 336.02 | know 321.13 | one 318.87 | need 302.71 | come 300.09 | said 278.4 | time 276.04 | peopl 269.66 | 
+Topic3
+food 5277.42 | place 4918.76 | good 4845.41 | great 3415.83 | order 3156.09 | like 2881.26 | time 2479.7 | go 2459.18 | servic 2365.35 | get 2308.04 | one 2124.28 | realli 2044.58 | tri 1996.08 | love 1953.66 | restaur 1771.74 | back 1735.81 | would 1654.88 | also 1594.78 | nice 1551.3 | ve 1531.24 | 
+Topic4
+bottl 154.73 | starbuck 123.91 | duck 106.56 | disney 73.49 | view 58.8 | anim 52.05 | flower 48.97 | museum 40.59 | ipa 39.2 | de 38.43 | ethiopian 38.26 | whip 37.11 | room 35.58 | impecc 30.69 | orlean 29.87 | german 29.68 | arrang 28.63 | laptop 28.24 | kingdom 27.56 | wi 26.24 |
