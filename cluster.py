@@ -141,7 +141,10 @@ def topicnize_new_reviews(model, vectorizer, path):
     X = vectorizer.transform(documents)
     topic_probabilities = model.transform(X)
     topic_df = pd.DataFrame(topic_probabilities, columns=["Topic{}".format(i) for i in range(model.n_components)])
-    return pd.concat([df, topic_df], axis=1)
+    topic_df = pd.concat([df, topic_df], axis=1)
+    path_wo_ext = path[0: path.index(".")]
+    topic_df.to_csv("{}_topicnized.csv".format(path_wo_ext))
+    return topic_df
 
 def main():
     print("Parsing inputs...")
@@ -171,7 +174,12 @@ def main():
 
     df = pd.concat([df, topic_df], axis=1)
     relevance, counts = get_topic_reviews(df, 5)
-    print(topicnize_new_reviews(lda_model, vectorizer, "White_Castle_reviews.csv").head())
+    topicnize_new_reviews(lda_model, vectorizer, "Burger_King_reviews.csv")
+    topicnize_new_reviews(lda_model, vectorizer, "Legal_Sea_Foods_Reviews.csv")
+    topicnize_new_reviews(lda_model, vectorizer, "White_Castle_reviews.csv")
+    topicnize_new_reviews(lda_model, vectorizer, "Subway_reviews.csv")
+    topicnize_new_reviews(lda_model, vectorizer, "Panda_Express_reviews.csv")
+    topicnize_new_reviews(lda_model, vectorizer, "Chipotle_Mexican_Grill_reviews.csv")
     df.to_csv("topicnized_data.csv")
     if len(sys.argv) > 1:
         show_topic_word_cloud(df, int(sys.argv[1]), ignore=["good", "great", "food", "place"])

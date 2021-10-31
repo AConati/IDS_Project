@@ -101,6 +101,7 @@ def main():
         business_name = sys.argv[1]
         path = "RAW_DATA/yelp_academic_dataset_review.json"
         out = "{}_reviews.csv".format(business_name)
+        out = out.replace(' ', '_')
         nrows = 500000
     else:
         business_name = None
