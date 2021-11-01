@@ -1,10 +1,11 @@
 Topic0
-time 1407.07 | would 1189.84 | get 923.13 | one 837.29 | call 833.31 | like 719.47 | back 718.31 | work 717.04 | us 706.5 | servic 693.67 | ask 690.12 | go 678.25 | custom 658.59 | help 650.89 | could 641.56 | day 641.27 | car 636.88 | need 633.85 | even 592.75 | want 590.22 | 
+time 95767.55 | get 85387.44 | would 81832.46 | servic 69705.89 | us 66972.68 | go 64245.19 | back 62239.28 | one 60410.97 | ask 57216.64 | call 53357.91 | could 53069.26 | minut 51720.45 | even 49723.99 | order 47822.98 | wait 46792.93 | want 45551.43 | custom 43514.93 | said 43040.96 | never 42780.82 | got 42734.16 | 
 Topic1
-bowl 269.36 | room 259.74 | hotel 221.79 | stay 182.44 | pool 149.49 | game 112.36 | area 83.26 | store 74.2 | conveni 65.77 | floor 63.72 | locat 61.09 | mall 57.23 | shoe 55.86 | kid 55.22 | properti 53.97 | park 53.2 | tv 53.03 | gym 51.59 | sport 44.68 | near 44.38 | 
+pizza 48392.67 | great 43015.99 | recommend 36698.68 | work 27455.58 | best 25804.78 | coffe 24364.04 | highli 24069.74 | love 24028.44 | help 22336.5 | amaz 22042.11 | friendli 19912.49 | ve 19868.53 | year 19150.63 | staff 17693.79 | new 17277.48 | dog 17032.52 | time 16554.4 | experi 16326.48 | thank 16135.75 | alway 15510.03 | 
 Topic2
-go 778.11 | get 767.35 | back 547.5 | never 482.98 | hair 422.07 | look 420.89 | great 389.82 | work 387.3 | servic 378.49 | like 374.85 | alway 367.38 | place 344.73 | year 336.02 | know 321.13 | one 318.87 | need 302.71 | come 300.09 | said 278.4 | time 276.04 | peopl 269.66 | 
+place 140231.42 | great 106952.34 | food 105674.78 | good 95465.33 | go 66519.27 | get 60765.97 | like 54204.65 | time 49801.96 | nice 49674.12 | bar 49427.14 | drink 48112.53 | realli 47703.52 | servic 46806.72 | love 45414.01 | alway 45148.02 | staff 42311.69 | one 40232.94 | beer 38578.49 | friendli 36802.59 | price 35036.69 | 
 Topic3
-food 5277.42 | place 4918.76 | good 4845.41 | great 3415.83 | order 3156.09 | like 2881.26 | time 2479.7 | go 2459.18 | servic 2365.35 | get 2308.04 | one 2124.28 | realli 2044.58 | tri 1996.08 | love 1953.66 | restaur 1771.74 | back 1735.81 | would 1654.88 | also 1594.78 | nice 1551.3 | ve 1531.24 | 
+food 145479.52 | good 136467.94 | order 115912.25 | place 90368.42 | like 75470.42 | tri 72399.66 | chicken 69649.08 | great 61262.1 | delici 60499.62 | restaur 59624.14 | fri 58760.52 | tast 55625.29 | servic 52330.39 | realli 51130.48 | one 50576.44 | flavor 50446.67 | menu 49405.96 | go 49066.27 | dish 47810.56 | sauc 47399.92 | 
 Topic4
-bottl 154.73 | starbuck 123.91 | duck 106.56 | disney 73.49 | view 58.8 | anim 52.05 | flower 48.97 | museum 40.59 | ipa 39.2 | de 38.43 | ethiopian 38.26 | whip 37.11 | room 35.58 | impecc 30.69 | orlean 29.87 | german 29.68 | arrang 28.63 | laptop 28.24 | kingdom 27.56 | wi 26.24 |
+store 31227.6 | shop 19455.02 | sushi 19395.1 | like 19290.38 | donut 13081.52 | chines 12410.85 | one 11797.94 | tea 10893.42 | roll 10889.6 | re 9253.82 | price 8277.61 | find 8071.35 | look 7718.6 | item 7704.65 | use 6583.3 | locat 6521.51 | littl 6472.07 | old 6377.39 | stuff 6069.18 | portland 5914.9 | 
+
